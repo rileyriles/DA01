@@ -60,6 +60,6 @@ from worker
 WHERE first_name = 'Amitah'
 
 ---- Excercise 10
-select substring(title,length(winery)+2,4)
+select CONCAT (substring(title,length(winery)+2,4), substring (title from length(winery)+6 for position (' (Tikves)' in title)))
 from winemag_p2
 WHERE country = 'Macedonia'
