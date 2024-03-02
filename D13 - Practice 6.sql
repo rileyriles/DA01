@@ -131,8 +131,8 @@ WITH
     )
 SELECT requester_id AS id, COUNT(accepter_id) AS num
 FROM accept_list
-GROUP BY 1
-ORDER BY 2 DESC
+GROUP BY requester_id
+ORDER BY COUNT(accepter_id) DESC
 LIMIT 1;
 
 
