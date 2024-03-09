@@ -57,10 +57,12 @@ END $$;
 UPDATE sales_dataset_rfm_prj
 SET Contactfullname = REPLACE(INITCAP(contactfullname), '-', ' ');
 
+ALTER TABLE sales_dataset_rfm_prj
+ADD COLUMN new_timestamp TIMESTAMP;
 UPDATE sales_dataset_rfm_prj
-SET new_timestamp_column = to_timestamp(orderdate, 'MM/DD/YYYY');
+SET new_timestamp = to_timestamp(orderdate, 'MM/DD/YYYY');
 ALTER TABLE sales_dataset_rfm_prj DROP COLUMN orderdate;
-ALTER TABLE sales_dataset_rfm_prj RENAME COLUMN new_timestamp_column TO orderdate;
+ALTER TABLE sales_dataset_rfm_prj RENAME COLUMN new_timestamp TO orderdate;
 
 ---- Question 2: 
 SELECT *
@@ -132,6 +134,6 @@ FROM sales_dataset_rfm_prj, iqr, quartiles;
 
 CREATE TABLE SALES_DATASET_RFM_PRJ_CLEA AS
 SELECT *
-FROM SALES_DATASET_RFM_PRJ; -- Replace SALES_DATASET_RFM_PRJ with the name of your cleaned table
+FROM SALES_DATASET_RFM_PRJ; 
 
 
